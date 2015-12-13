@@ -165,9 +165,8 @@ def fila_por_cpu(processos, tempo_cpu):
 			if not execucao:
 				execucao = processo
 			if execucao and processo[2] < execucao[2]:
-				fila_circular = sorted(processos, key=itemgetter(2, 1, 0)) #Ordenação por (Tempo de Burst, Tempo de Chegada, Número do processo)
+				fila_circular = sorted(fila_circular, key=itemgetter(2, 1, 0)) #Ordenação por (Tempo de Burst, Tempo de Chegada, Número do processo)
 				execucao = processo
-
 	return fila_circular # Retorna uma lista com os processos
 
 
@@ -399,6 +398,15 @@ def run():
 
 	print("Tempos de chegada: %s" %lista_chegada)
 	print("Burst: %s" %lista_burst)
+	print("\n\n")
 
+	novo = input("Rodar novamente? (s / n): ").lower()
+	while novo != 's' and novo != 'n':
+		novo = input("Rodar novamente? (s / n): ").lower()
+	
+	if novo == "s":
+		run()
+	else:
+		print("Finalizado")
 
 run()
